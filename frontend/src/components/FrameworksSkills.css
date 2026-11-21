@@ -1,0 +1,140 @@
+.frameworks-skills {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  background: var(--bg);
+}
+
+.frameworks-card {
+  width: min(620px, 100%);
+  box-sizing: border-box;
+  text-align: left;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background: var(--bg);
+}
+
+.frameworks-card h1 {
+  font-size: 32px;
+  margin: 0 0 24px;
+  letter-spacing: normal;
+}
+
+.frameworks-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.frameworks-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.frameworks-input-row input {
+  min-width: 0;
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.frameworks-input-row input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.frameworks-input-row button,
+.frameworks-save-button {
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font: inherit;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+
+.frameworks-input-row button:hover,
+.frameworks-save-button:hover {
+  opacity: 0.9;
+}
+
+.frameworks-save-button {
+  margin-top: 24px;
+}
+
+.frameworks-save-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.frameworks-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.frameworks-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 12px;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.frameworks-tags button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 24px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-h);
+  font-size: 18px;
+}
+
+.frameworks-tags button:hover {
+  background: var(--accent-border);
+}
+
+.frameworks-error,
+.frameworks-status,
+.frameworks-empty {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.frameworks-error {
+  color: #c53030;
+}
+
+@media (max-width: 600px) {
+  .frameworks-card {
+    padding: 24px 20px;
+  }
+
+  .frameworks-card h1 {
+    font-size: 28px;
+  }
+
+  .frameworks-input-row {
+    flex-direction: column;
+  }
+}
