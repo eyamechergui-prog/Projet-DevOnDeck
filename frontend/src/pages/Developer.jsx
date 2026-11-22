@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import styles from "./Developer.module.css";
 
@@ -15,12 +15,22 @@ function Developer() {
         </p>
 
         <p className={styles.info}>
-          Email : {user.email}
+          Email : {user?.email}
         </p>
 
         <p className={styles.info}>
-          Rôle : {user.role}
+          Rôle : {user?.role}
         </p>
+
+        {/* Liens de navigation vers vos autres pages */}
+        <div style={{ display: "flex", gap: "12px", marginTop: "24px", flexWrap: "wrap" }}>
+          <Link to="/profile" style={actionBtnStyle}>
+            👤 Mon Profil
+          </Link>
+          <Link to="/profile/frameworks" style={actionBtnStyle}>
+            ⚙️ Frameworks & Compétences
+          </Link>
+        </div>
 
         <button className={styles.logoutButton} onClick={logout}>
           Se déconnecter
@@ -29,5 +39,17 @@ function Developer() {
     </div>
   );
 }
+
+const actionBtnStyle = {
+  display: "inline-block",
+  padding: "10px 18px",
+  backgroundColor: "#16834a",
+  color: "#ffffff",
+  textDecoration: "none",
+  borderRadius: "8px",
+  fontWeight: "bold",
+  fontSize: "14px",
+  transition: "background-color 0.2s ease"
+};
 
 export default Developer;

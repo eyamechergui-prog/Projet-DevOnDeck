@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useProfile from "./hooks/useProfile";
 import PersonalInfoForm from "./components/profile/PersonalInfoForm";
 import LanguageSelector from "./components/profile/LanguageSelector";
@@ -10,6 +11,22 @@ function DeveloperProfilePage() {
 
   return (
     <main className="profile-page">
+      <div style={{ marginBottom: "16px" }}>
+        <Link
+          to="/developer"
+          style={{
+            color: "#16834a",
+            textDecoration: "none",
+            fontWeight: "600",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px"
+          }}
+        >
+          ← Retour à l'espace développeur
+        </Link>
+      </div>
+
       <header className="profile-header">
         <p className="profile-eyebrow">DevOnDeck</p>
         <h1>Mon profil développeur</h1>
