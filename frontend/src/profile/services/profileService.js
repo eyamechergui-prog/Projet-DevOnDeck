@@ -1,19 +1,12 @@
 import { request } from "./api";
 
 export function getMyProfile() {
-  return request("/profile/me");
+  return request("/api/developpeur/me/profile");
 }
 
-export function updatePersonalInfo(personalInfo) {
-  return request("/profile/me", {
+export function updateProfile(profile) {
+  return request("/api/developpeur/me/profile", {
     method: "PUT",
-    body: personalInfo,
-  });
-}
-
-export function updateLanguages(languages) {
-  return request("/profile/me/languages", {
-    method: "PUT",
-    body: { languages },
+    body: profile,
   });
 }

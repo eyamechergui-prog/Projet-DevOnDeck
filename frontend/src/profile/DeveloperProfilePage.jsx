@@ -10,10 +10,14 @@ function DeveloperProfilePage() {
 
   return (
     <main className="profile-page">
-      <h1>Mon profil développeur</h1>
+      <header className="profile-header">
+        <p className="profile-eyebrow">DevOnDeck</p>
+        <h1>Mon profil développeur</h1>
+        <p>Mettez à jour vos informations et votre expertise.</p>
+      </header>
 
       {isLoading && (
-        <p className="page-message">Chargement du profil…</p>
+        <p className="page-message">Chargement du profil...</p>
       )}
 
       {error && (

@@ -3,7 +3,7 @@ import LanguageOption from "./LanguageOption";
 import StatusMessage from "../common/StatusMessage";
 import { AVAILABLE_LANGUAGES, MAX_LANGUAGES } from "../../constants/languages";
 import { validateLanguages } from "../../utils/validators";
-import { updateLanguages } from "../../services/profileService";
+import { updateProfile } from "../../services/profileService";
 
 function LanguageSelector({ initialLanguages = [] }) {
   const [selected, setSelected] = useState(initialLanguages);
@@ -37,7 +37,7 @@ function LanguageSelector({ initialLanguages = [] }) {
     setMessage("");
 
     try {
-      await updateLanguages(selected);
+      await updateProfile({ languages: selected });
       setStatus("success");
       setMessage("Langages enregistrés avec succès.");
     } catch (err) {
