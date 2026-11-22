@@ -122,6 +122,18 @@ public class SecurityConfig {
                         .hasRole("ORGANISATION")
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(exceptions ->
+                        exceptions.authenticationEntryPoint(
+                                (request, response, exception) -> {
+                                    response.setStatus(401);
+                                    response.setContentType("application/json");
+                                    response.setCharacterEncoding("UTF-8");
+                                    response.getWriter().write(
+                                            "{\"message\":\"Authentification requise\"}"
+                                    );
+                                }
+                        )
+                )
                 .oauth2ResourceServer(oauth ->
                         oauth.jwt(jwt ->
                                 jwt.jwtAuthenticationConverter(converter)
@@ -135,10 +147,10 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "http://localhost:5174"
+                "http://localhost:5174",
+                "http://localhost:5176"
         ));
 
         configuration.setAllowedMethods(List.of(

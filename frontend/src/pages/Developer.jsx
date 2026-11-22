@@ -1,5 +1,6 @@
 
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 import styles from "./Developer.module.css";
 
 function Developer() {
@@ -21,6 +22,19 @@ function Developer() {
         <p className={styles.info}>
           Rôle : {user.role}
         </p>
+
+        <div className={styles.navigation}>
+          <Link to="/profile" className={styles.navigationButton}>
+            Mon profil
+          </Link>
+
+          <Link
+            to="/profile/frameworks"
+            className={styles.navigationButton}
+          >
+            Mes frameworks et bibliothèques
+          </Link>
+        </div>
 
         <button className={styles.logoutButton} onClick={logout}>
           Se déconnecter

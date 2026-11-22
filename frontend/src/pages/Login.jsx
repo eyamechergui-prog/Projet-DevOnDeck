@@ -1,8 +1,7 @@
-
 import { useState } from "react";
-import styles from "./Login.module.css";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.css";
 
 function Login() {
   const { login } = useAuth();
@@ -11,9 +10,9 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
+  const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -40,18 +39,22 @@ function Login() {
     setLoading(true);
 
     try {
-      const data = await login(email.trim(), password);
+      const user = await login(email.trim(), password);
 
       setSuccess("Connexion réussie !");
 
-      if (data.role === "DEVELOPPEUR") {
-        navigate("/developer");
-      } else if (data.role === "ORGANISATION") {
-        navigate("/organization");
+      if (user.role === "DEVELOPPEUR") {
+        navigate("/developer", { replace: true });
+      } else if (user.role === "ORGANISATION") {
+        navigate("/organization", { replace: true });
+      } else {
+        setError({
+          general: "Rôle utilisateur non reconnu.",
+        });
       }
     } catch (err) {
       setError({
-        general: err.message,
+        general: err.message || "Une erreur est survenue lors de la connexion.",
       });
     } finally {
       setLoading(false);
@@ -86,9 +89,10 @@ function Login() {
               id="email"
               type="email"
               placeholder="Votre adresse email"
-              autoComplete="off"
+              autoComplete="username"
               value={email}
               disabled={loading}
+              required
               onChange={(e) => {
                 setEmail(e.target.value);
                 setError((prev) => ({
@@ -112,9 +116,10 @@ function Login() {
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="Votre mot de passe"
-              autoComplete="new-password"
+              autoComplete="current-password"
               value={password}
               disabled={loading}
+              required
               onChange={(e) => {
                 setPassword(e.target.value);
                 setError((prev) => ({
@@ -158,6 +163,12 @@ function Login() {
             {loading ? "Connexion en cours..." : "Se connecter"}
           </button>
         </form>
+
+        <p>
+          Vous n'avez pas encore de compte ?
+          {" "}
+          <Link to="/register">Créer un compte</Link>
+        </p>
       </div>
     </div>
   );
