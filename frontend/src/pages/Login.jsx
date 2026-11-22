@@ -1,35 +1,60 @@
 
 import { useState } from "react";
 import styles from "./Login.module.css";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     let newErreur = {};
 
-    // Validation de l'email
     if (!email.trim()) {
       newErreur.email = "Veuillez introduire votre email";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErreur.email = "Adresse email invalide";
     }
 
-    // Validation du mot de passe
     if (!password.trim()) {
       newErreur.password = "Veuillez introduire votre mot de passe";
     }
 
     setError(newErreur);
+    setSuccess("");
 
-    // Si aucune erreur n'existe
-    if (Object.keys(newErreur).length === 0) {
-      alert("Formulaire valide !");
+    if (Object.keys(newErreur).length > 0) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const data = await login(email.trim(), password);
+
+      setSuccess("Connexion réussie !");
+
+      if (data.role === "DEVELOPPEUR") {
+        navigate("/developer");
+      } else if (data.role === "ORGANISATION") {
+        navigate("/organization");
+      }
+    } catch (err) {
+      setError({
+        general: err.message,
+      });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -52,8 +77,8 @@ function Login() {
           onSubmit={handleSubmit}
           className={styles.form}
           noValidate
+          autoComplete="off"
         >
-          {/* Champ Email */}
           <div className={styles.formGroup}>
             <label htmlFor="email">Adresse email</label>
 
@@ -61,10 +86,17 @@ function Login() {
               id="email"
               type="email"
               placeholder="Votre adresse email"
+              autoComplete="off"
               value={email}
+              disabled={loading}
               onChange={(e) => {
                 setEmail(e.target.value);
-                setError((prev) => ({ ...prev, email: "" }));
+                setError((prev) => ({
+                  ...prev,
+                  email: "",
+                  general: "",
+                }));
+                setSuccess("");
               }}
             />
 
@@ -73,7 +105,6 @@ function Login() {
             )}
           </div>
 
-          {/* Champ Mot de passe */}
           <div className={styles.formGroup}>
             <label htmlFor="password">Mot de passe</label>
 
@@ -81,10 +112,17 @@ function Login() {
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="Votre mot de passe"
+              autoComplete="new-password"
               value={password}
+              disabled={loading}
               onChange={(e) => {
                 setPassword(e.target.value);
-                setError((prev) => ({ ...prev, password: "" }));
+                setError((prev) => ({
+                  ...prev,
+                  password: "",
+                  general: "",
+                }));
+                setSuccess("");
               }}
             />
 
@@ -93,20 +131,31 @@ function Login() {
             )}
           </div>
 
-          {/* Afficher / masquer le mot de passe */}
           <button
             type="button"
             className={styles.togglePassword}
             onClick={() => setShowPassword(!showPassword)}
+            disabled={loading}
           >
             {showPassword
               ? "Masquer le mot de passe"
               : "Afficher le mot de passe"}
           </button>
 
-          {/* Bouton de connexion */}
-          <button type="submit" className={styles.loginButton}>
-            Se connecter
+          {error.general && (
+            <p className={styles.error}>{error.general}</p>
+          )}
+
+          {success && (
+            <p role="status">{success}</p>
+          )}
+
+          <button
+            type="submit"
+            className={styles.loginButton}
+            disabled={loading}
+          >
+            {loading ? "Connexion en cours..." : "Se connecter"}
           </button>
         </form>
       </div>
