@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import styles from "./Login.module.css";
 
 function Login() {
@@ -6,8 +8,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
@@ -15,8 +21,24 @@ function Login() {
       return;
     }
 
-    setError("");
-    alert("Formulaire validé !");
+    try {
+      setError("");
+      setLoading(true);
+
+      const user = await login(email.trim(), password);
+
+      if (user.role === "DEVELOPPEUR") {
+        navigate("/developer", { replace: true });
+      } else if (user.role === "ORGANISATION") {
+        navigate("/organization", { replace: true });
+      } else {
+        setError("Rôle utilisateur non reconnu.");
+      }
+    } catch (err) {
+      setError(err.message || "Une erreur est survenue lors de la connexion.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -41,6 +63,8 @@ function Login() {
               placeholder="Votre adresse email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
+              required
             />
           </div>
 
@@ -52,6 +76,8 @@ function Login() {
               placeholder="Votre mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              required
             />
           </div>
 
@@ -65,8 +91,12 @@ function Login() {
 
           {error && <p className={styles.error}>{error}</p>}
 
-          <button type="submit" className={styles.loginButton}>
-            Se connecter
+          <button
+            type="submit"
+            className={styles.loginButton}
+            disabled={loading}
+          >
+            {loading ? "Connexion en cours..." : "Se connecter"}
           </button>
         </form>
       </div>

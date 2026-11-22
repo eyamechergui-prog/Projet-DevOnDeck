@@ -1,0 +1,25 @@
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.navigationButton {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 2px solid #16834a;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #16834a;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.navigationButton:hover {
+  background: #16834a;
+  color: #ffffff;
+}

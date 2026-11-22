@@ -1,0 +1,42 @@
+
+.container {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f4f8f5;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  color: #16834a;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.info {
+  color: #555555;
+  margin: 10px 0;
+}
+
+.logoutButton {
+  margin-top: 25px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #16834a;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background: #116b3b;
+}
