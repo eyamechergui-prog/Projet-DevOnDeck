@@ -3,12 +3,13 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Developer from "./pages/Developer";
 import Organization from "./pages/Organization";
 import DeveloperProfilePage from "./profile/DeveloperProfilePage";
 import FrameworksSkills from "./components/FrameworksSkills";
-
 import ProtectedRoute from "./components/ProtectedRoute";
+
 import { useAuth } from "./context/AuthContext";
 
 function AppRoutes() {
@@ -45,6 +46,8 @@ function AppRoutes() {
       <Route element={<ProtectedRoute allowedRole="ORGANISATION" />}>
         <Route path="/organization" element={<Organization />} />
       </Route>
+
+      <Route path="/register" element={<Register />} />
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>

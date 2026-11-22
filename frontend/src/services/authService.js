@@ -1,4 +1,3 @@
-
 const API_URL = "http://localhost:8080/api/auth";
 
 export async function login(email, password) {
@@ -43,4 +42,24 @@ export function getCurrentUser() {
   }
 
   return { token, email, role };
+}
+
+export async function register(userData) {
+  const response = await fetch(`${API_URL}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || data.error || "Impossible de créer le compte."
+    );
+  }
+
+  return data;
 }
