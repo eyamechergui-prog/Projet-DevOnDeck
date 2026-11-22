@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./Login.module.css";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const { login } = useAuth();
@@ -158,6 +159,11 @@ function Login() {
             {loading ? "Connexion en cours..." : "Se connecter"}
           </button>
         </form>
+        <p>
+          Vous n'avez pas encore de compte ?
+          {" "}
+          <Link to="/register">Créer un compte</Link>
+        </p>
       </div>
     </div>
   );
