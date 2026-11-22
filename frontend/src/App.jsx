@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Developer from "./pages/Developer";
 import Organization from "./pages/Organization";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Register from "./pages/Register";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -38,6 +39,8 @@ function AppRoutes() {
       <Route element={<ProtectedRoute allowedRole="ORGANISATION" />}>
         <Route path="/organization" element={<Organization />} />
       </Route>
+
+      <Route path="/register" element={<Register />} />
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
