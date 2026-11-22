@@ -1,5 +1,7 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import MesOffres from "./pages/MesOffres";
+import AjouterOffre from "./pages/AjouterOffre";
 
 import Login from "./pages/Login";
 import Developer from "./pages/Developer";
@@ -38,6 +40,8 @@ function AppRoutes() {
 
       <Route element={<ProtectedRoute allowedRole="ORGANISATION" />}>
         <Route path="/organization" element={<Organization />} />
+        <Route path="/organization/offres" element={<MesOffres />} />
+        <Route path="/organization/offres/ajouter" element={<AjouterOffre />} />
       </Route>
 
       <Route path="/register" element={<Register />} />
