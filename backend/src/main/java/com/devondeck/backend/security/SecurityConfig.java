@@ -122,6 +122,18 @@ public class SecurityConfig {
                         .hasRole("ORGANISATION")
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(exceptions ->
+                        exceptions.authenticationEntryPoint(
+                                (request, response, exception) -> {
+                                    response.setStatus(401);
+                                    response.setContentType("application/json");
+                                    response.setCharacterEncoding("UTF-8");
+                                    response.getWriter().write(
+                                            "{\"message\":\"Authentification requise\"}"
+                                    );
+                                }
+                        )
+                )
                 .oauth2ResourceServer(oauth ->
                         oauth.jwt(jwt ->
                                 jwt.jwtAuthenticationConverter(converter)

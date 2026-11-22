@@ -1,6 +1,9 @@
 import { getMockSkills, saveMockSkills } from './mockFrameworksSkillsService'
 
-const useMockApi = true
+const useMockApi =
+  (import.meta.env.VITE_USE_MOCK_API ?? 'false').toLowerCase() === 'true'
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ??
+  'http://localhost:8080').replace(/\/$/, '')
 
 function getToken() {
   return window.localStorage.getItem('token')
@@ -19,7 +22,20 @@ async function requestSkills(url, options = {}) {
   })
 
   if (!response.ok) {
-    throw new Error("Erreur lors de l'appel à l'API")
+    let message = "Erreur lors de l'appel à l'API"
+
+    try {
+      const body = await response.json()
+      if (body.message) {
+        message = body.message
+      }
+    } catch {
+      if (response.status === 401) {
+        message = "Authentification requise"
+      }
+    }
+
+    throw new Error(message)
   }
 
   return response.status === 204 ? [] : response.json()
@@ -30,7 +46,7 @@ export async function getSkills() {
     return getMockSkills()
   }
 
-  return requestSkills('/api/developers/me/skills')
+  return requestSkills(`${apiBaseUrl}/api/developpeur/me/skills`)
 }
 
 export async function saveSkills(skills) {
@@ -38,7 +54,7 @@ export async function saveSkills(skills) {
     return saveMockSkills(skills)
   }
 
-  return requestSkills('/api/developers/me/skills', {
+  return requestSkills(`${apiBaseUrl}/api/developpeur/me/skills`, {
     method: 'PUT',
     body: JSON.stringify({ skills }),
   })
