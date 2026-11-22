@@ -1,14 +1,15 @@
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import FrameworksSkills from "./components/FrameworksSkills";
+// Mes deux pages (US-09 et US-10)
 import MesOffres from "./pages/MesOffres";
 import AjouterOffre from "./pages/AjouterOffre";
-
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Developer from "./pages/Developer";
 import Organization from "./pages/Organization";
+import DeveloperProfilePage from "./profile/DeveloperProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Register from "./pages/Register";
-
 import { useAuth } from "./context/AuthContext";
 
 function AppRoutes() {
@@ -16,6 +17,7 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route
         path="/login"
         element={
@@ -33,9 +35,12 @@ function AppRoutes() {
           )
         }
       />
+      <Route path="/register" element={<Register />} />
 
       <Route element={<ProtectedRoute allowedRole="DEVELOPPEUR" />}>
         <Route path="/developer" element={<Developer />} />
+        <Route path="/profile" element={<DeveloperProfilePage />} />
+        <Route path="/profile/frameworks" element={<FrameworksSkills />} />
       </Route>
 
       <Route element={<ProtectedRoute allowedRole="ORGANISATION" />}>
@@ -43,8 +48,6 @@ function AppRoutes() {
         <Route path="/organization/offres" element={<MesOffres />} />
         <Route path="/organization/offres/ajouter" element={<AjouterOffre />} />
       </Route>
-
-      <Route path="/register" element={<Register />} />
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
@@ -58,5 +61,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
