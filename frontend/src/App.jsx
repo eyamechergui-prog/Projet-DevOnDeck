@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import FrameworksSkills from "./components/FrameworksSkills";
-// Mes deux pages (US-09 et US-10)
+import ProtectedRoute from "./components/ProtectedRoute";
 import MesOffres from "./pages/MesOffres";
 import AjouterOffre from "./pages/AjouterOffre";
 import Login from "./pages/Login";
@@ -9,7 +9,6 @@ import Register from "./pages/Register";
 import Developer from "./pages/Developer";
 import Organization from "./pages/Organization";
 import DeveloperProfilePage from "./profile/DeveloperProfilePage";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 
 function AppRoutes() {
@@ -18,6 +17,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
+
       <Route
         path="/login"
         element={
@@ -35,6 +35,7 @@ function AppRoutes() {
           )
         }
       />
+
       <Route path="/register" element={<Register />} />
 
       <Route element={<ProtectedRoute allowedRole="DEVELOPPEUR" />}>
@@ -61,4 +62,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;

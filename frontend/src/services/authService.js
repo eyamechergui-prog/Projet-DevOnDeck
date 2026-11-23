@@ -1,4 +1,3 @@
-
 const API_URL = "http://localhost:8080/api/auth";
 
 export async function login(email, password) {
@@ -44,7 +43,6 @@ export function getCurrentUser() {
 
   return { token, email, role };
 }
-
 
 export async function register(userData) {
   const response = await fetch(`${API_URL}/register`, {
