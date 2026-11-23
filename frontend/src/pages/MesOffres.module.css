@@ -1,0 +1,81 @@
+/* ===== MesOffres.module.css : design de la page "Mes offres" ===== */
+/* Le code de la page ne change pas : on style les balises (h2, button, p...) à l'intérieur de .container */
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #14452f;
+}
+
+.container h2 {
+  font-size: 26px;
+  margin-bottom: 22px;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+/* bouton vert "Ajouter un poste" */
+.container button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #1e7e57, #2a9d6a);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.container button:hover {
+  opacity: 0.9;
+}
+
+/* le texte "Aucune offre publiée" : zone en pointillés */
+.container > p {
+  border: 1px dashed #dbe7df;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7c72;
+}
+
+/* message d'erreur (il remplace le style en pointillés) */
+.container .erreur {
+  border: none;
+  padding: 0;
+  text-align: left;
+  color: #c62828;
+  margin-bottom: 14px;
+}
+
+/* carte d'une offre */
+.carteOffre {
+  background-color: white;
+  border-radius: 22px;
+  padding: 24px 28px;
+  margin-bottom: 18px;
+  border: 1px solid #e6efe9;
+  box-shadow: 0 4px 18px rgba(20, 69, 47, 0.06);
+}
+
+.carteOffre h3 {
+  font-size: 18px;
+  color: #14452f;
+  margin-bottom: 8px;
+}
+
+.carteOffre p {
+  font-size: 14px;
+  color: #3b4f44;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}

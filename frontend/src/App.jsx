@@ -1,8 +1,9 @@
-
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import FrameworksSkills from "./components/FrameworksSkills";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MesOffres from "./pages/MesOffres";
+import AjouterOffre from "./pages/AjouterOffre";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Developer from "./pages/Developer";
@@ -45,6 +46,8 @@ function AppRoutes() {
 
       <Route element={<ProtectedRoute allowedRole="ORGANISATION" />}>
         <Route path="/organization" element={<Organization />} />
+        <Route path="/organization/offres" element={<MesOffres />} />
+        <Route path="/organization/offres/ajouter" element={<AjouterOffre />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />

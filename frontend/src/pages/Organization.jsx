@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import styles from "./Organization.module.css";
 
@@ -21,7 +21,7 @@ function Organization() {
         <p className={styles.info}>
           Rôle : {user.role}
         </p>
-
+        <Link to="/organization/offres">Mes offres</Link>
         <button className={styles.logoutButton} onClick={logout}>
           Se déconnecter
         </button>

@@ -1,0 +1,83 @@
+/* ===== AjouterOffre.module.css : design de la page "Ajouter un poste" ===== */
+/* Le code de la page ne change pas : on style les balises (h2, form, label...) à l'intérieur de .container */
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #14452f;
+}
+
+.container h2 {
+  font-size: 26px;
+  margin-bottom: 22px;
+}
+
+/* le formulaire devient une carte blanche arrondie */
+.container form {
+  background-color: white;
+  border-radius: 22px;
+  padding: 28px;
+  border: 1px solid #e6efe9;
+  box-shadow: 0 4px 18px rgba(20, 69, 47, 0.06);
+}
+
+.container label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+
+.container input,
+.container textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dbe7df;
+  border-radius: 12px;
+  background-color: #fafcfb;
+  font-size: 14px;
+  font-family: inherit;
+  color: #14452f;
+}
+
+.container input:focus,
+.container textarea:focus {
+  outline: none;
+  border-color: #1e7e57;
+}
+
+.container textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* grand bouton vert avec dégradé */
+.container button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #1e7e57, #2a9d6a);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container button:hover {
+  opacity: 0.9;
+}
+
+/* message d'erreur */
+.erreur {
+  color: #c62828;
+  font-size: 14px;
+  margin-top: 14px;
+}
