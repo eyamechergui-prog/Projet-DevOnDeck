@@ -25,7 +25,7 @@ public class Offre {
 
     // les compétences recherchées pour le poste (liste de textes)
     // @ElementCollection : crée une table à part pour stocker la liste
-    @ElementCollection
+    @ElementCollection(fetch=FetchType.EAGER)
     private List<String> competences;
 
     private LocalDate datePublication;
