@@ -7,6 +7,8 @@ import AjouterOffre from "./pages/AjouterOffre";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Developer from "./pages/Developer";
+// US-12 : offres vues par le développeur
+import OffresDeveloppeur from "./pages/OffresDeveloppeur";
 import Organization from "./pages/Organization";
 import DeveloperProfilePage from "./profile/DeveloperProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -39,6 +41,7 @@ function AppRoutes() {
 
       <Route element={<ProtectedRoute allowedRole="DEVELOPPEUR" />}>
         <Route path="/developer" element={<Developer />} />
+        <Route path="/developer/offres" element={<OffresDeveloppeur />} />
         <Route path="/profile" element={<DeveloperProfilePage />} />
         <Route path="/profile/frameworks" element={<FrameworksSkills />} />
       </Route>

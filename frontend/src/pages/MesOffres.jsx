@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 // Link permet de créer un lien vers une autre page.
 import { Link } from "react-router-dom";
-import { getMesOffres } from "../services/offreService"; // récupère les offres depuis le Backend.
+import { getMesOffres, supprimerOffre } from "../services/offreService"; // récupère les offres depuis le Backend.
 // On importe le design de la page.
 import styles from "./MesOffres.module.css";
 
@@ -22,6 +22,27 @@ function MesOffres() {
         setMessage("Impossible de charger les offres");
       });
   }, []);
+
+  // US-11 : supprimer une offre après confirmation.
+  const handleSupprimer = async (id) => {
+    if (!window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+      return;
+    }
+
+    try {
+      await supprimerOffre(id);
+      // On retire l'offre supprimée de la liste affichée, sans recharger la page.
+      setOffres((anciennes) => anciennes.filter((offre) => offre.id !== id));
+      setMessage("");
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setMessage("Cette offre n'existe plus.");
+        setOffres((anciennes) => anciennes.filter((offre) => offre.id !== id));
+      } else {
+        setMessage("Impossible de supprimer l'offre");
+      }
+    }
+  };
 
   // Partie visuelle de la page.
   return (
@@ -64,6 +85,14 @@ function MesOffres() {
 
           
           <p>Publiée le : {offre.datePublication}</p>
+
+          <button
+            type="button"
+            className={styles.supprimer}
+            onClick={() => handleSupprimer(offre.id)}
+          >
+            Supprimer
+          </button>
 
         </div>
       ))}
