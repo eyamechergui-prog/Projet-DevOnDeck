@@ -1,0 +1,108 @@
+/* ===== OffresDeveloppeur.module.css : page "Offres disponibles" (US-12) ===== */
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #14452f;
+}
+
+.container h2 {
+  font-size: 26px;
+  margin-bottom: 22px;
+}
+
+.retour {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #1e7e57;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.vide {
+  border: 1px dashed #dbe7df;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7c72;
+}
+
+.erreur {
+  color: #c62828;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.carteOffre {
+  background-color: white;
+  border-radius: 22px;
+  padding: 24px 28px;
+  margin-bottom: 18px;
+  border: 1px solid #e6efe9;
+  box-shadow: 0 4px 18px rgba(20, 69, 47, 0.06);
+}
+
+.carteOffre h3 {
+  font-size: 18px;
+  color: #14452f;
+  margin: 0 0 4px;
+}
+
+.carteOffre p {
+  font-size: 14px;
+  color: #3b4f44;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.carteOffre .organisation {
+  font-weight: 600;
+  color: #1e7e57;
+}
+
+.carteOffre .date {
+  font-size: 12px;
+  color: #6b7c72;
+}
+
+.competences {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e8f5ee;
+  color: #1e7e57;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.postuler {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #1e7e57, #2a9d6a);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.postuler:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.postuler:disabled {
+  background: #b7c9bf;
+  cursor: default;
+}
