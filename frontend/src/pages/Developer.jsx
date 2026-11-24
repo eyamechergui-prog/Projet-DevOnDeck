@@ -16,16 +16,30 @@ function Developer() {
         </p>
 
         <p className={styles.info}>
-          Email : {user.email}
+          Email : {user?.email}
         </p>
 
         <p className={styles.info}>
-          Rôle : {user.role}
+          Rôle : {user?.role}
         </p>
 
-        <Link to="/developer/offres">Voir les offres</Link>
+        <div className={styles.navigation}>
+          <Link to="/profile" className={styles.navigationButton}>
+            Mon profil
+          </Link>
 
-        <button className={styles.logoutButton} onClick={logout}>
+          <Link
+            to="/profile/frameworks"
+            className={styles.navigationButton}
+          >
+            Mes frameworks et bibliothèques
+          </Link>
+        </div>
+
+        <button
+          className={styles.logoutButton}
+          onClick={logout}
+        >
           Se déconnecter
         </button>
       </div>
@@ -34,3 +48,4 @@ function Developer() {
 }
 
 export default Developer;
+
