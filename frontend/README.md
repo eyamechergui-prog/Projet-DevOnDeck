@@ -1,42 +1,16 @@
-# DevOnDeck : Frontend Web (US-05 et US-06)
+# React + Vite
 
-## Lancer le projet
-```bash
-npm install
-cp .env.example .env     # adapter VITE_API_URL
-npm run dev
-```
-Page : http://localhost:5173/profile
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Structure
-```
-src/
-├── pages/DeveloperProfilePage.jsx      Page : charge le profil, assemble les sections
-├── components/
-│   ├── common/FormField.jsx            Champ de formulaire réutilisable
-│   ├── common/StatusMessage.jsx        Message succès / erreur
-│   └── profile/
-│       ├── PersonalInfoForm.jsx        US-05 : infos personnelles et bio
-│       ├── LanguageSelector.jsx        US-06 : choix des 5 langages
-│       └── LanguageOption.jsx          Un langage cliquable
-├── hooks/useProfile.js                 GET du profil au chargement de la page
-├── services/api.js                     fetch + JWT + erreurs HTTP
-├── services/profileService.js          Routes de l'API du profil
-├── utils/validators.js                 Règles de validation
-└── constants/languages.js              Liste prédéfinie des langages
-```
+Currently, two official plugins are available:
 
-## ⚠️ Hypothèses à confirmer avec l'équipe backend
-Tout se corrige dans `services/profileService.js` (routes), `services/api.js` (token) et `constants/languages.js`.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-| Hypothèse | Valeur actuelle |
-|---|---|
-| Récupérer le profil | `GET /profile/me` |
-| Enregistrer US-05 | `PUT /profile/me` (firstName, lastName, title, location, bio) |
-| Enregistrer US-06 | `PUT /profile/me/languages` avec `{ languages: [...] }` |
-| Token JWT | `localStorage` clé `token`, en-tête `Authorization: Bearer …` |
-| Erreurs de validation | `{ message, errors: { champ: "texte" } }` |
-| CORS | activé côté Express pour `http://localhost:5173` |
+## React Compiler
 
-## Tester sans login
-Console du navigateur : `localStorage.setItem("token", "<un JWT valide>")` puis recharger.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the Oxlint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
