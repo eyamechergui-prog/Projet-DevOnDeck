@@ -1,3 +1,4 @@
+
 package com.devondeck.backend.entity;
 
 import jakarta.persistence.Column;

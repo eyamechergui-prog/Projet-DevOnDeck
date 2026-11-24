@@ -22,3 +22,8 @@ export const ajouterOffre = (offre) => {
 export const getMesOffres = () => {
   return axios.get(API_URL, getConfig());
 };
+
+// US-11 : supprimer une offre (DELETE /api/organisation/offres/{id})
+export const supprimerOffre = (id) => {
+  return axios.delete(`${API_URL}/${id}`, getConfig());
+};

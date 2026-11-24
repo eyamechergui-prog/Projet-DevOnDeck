@@ -44,4 +44,14 @@ public class OffreController {
     public List<Offre> getMesOffres(Authentication authentication) {
         return offreService.getOffresOrganisation(authentication.getName());
     }
+    // US-11 : supprimer une offre
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> supprimerOffre(
+            @PathVariable Long id,
+            Authentication authentication) {
+
+        offreService.supprimerOffre(id, authentication.getName());
+
+        return ResponseEntity.noContent().build();
+    }
 }
