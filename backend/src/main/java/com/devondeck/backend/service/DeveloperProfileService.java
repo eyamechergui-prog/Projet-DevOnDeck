@@ -50,7 +50,7 @@ public class DeveloperProfileService {
                 .orElseGet(() -> new DeveloperProfile(user));
 
         if (request.getFirstName() != null) {
-            profile.setFirstName(validateText(
+            user.setFirstName(validateText(
                     "Le prénom",
                     request.getFirstName(),
                     2,
@@ -60,7 +60,7 @@ public class DeveloperProfileService {
         }
 
         if (request.getLastName() != null) {
-            profile.setLastName(validateText(
+            user.setLastName(validateText(
                     "Le nom",
                     request.getLastName(),
                     2,
@@ -68,6 +68,8 @@ public class DeveloperProfileService {
                     true
             ));
         }
+
+        userRepository.save(user);
 
         if (request.getTitle() != null) {
             profile.setTitle(validateText(
@@ -181,8 +183,8 @@ public class DeveloperProfileService {
 
     private DeveloperProfileResponse toResponse(DeveloperProfile profile) {
         return new DeveloperProfileResponse(
-                profile.getFirstName(),
-                profile.getLastName(),
+                profile.getUser().getFirstName(),
+                profile.getUser().getLastName(),
                 profile.getTitle(),
                 profile.getLocation(),
                 profile.getBio(),

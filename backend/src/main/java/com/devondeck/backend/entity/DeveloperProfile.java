@@ -1,3 +1,4 @@
+
 package com.devondeck.backend.entity;
 
 import jakarta.persistence.*;
@@ -16,12 +17,6 @@ public class DeveloperProfile {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
-
-    @Column(length = 50)
-    private String firstName;
-
-    @Column(length = 50)
-    private String lastName;
 
     @Column(length = 100)
     private String title;
@@ -53,22 +48,6 @@ public class DeveloperProfile {
 
     public User getUser() {
         return user;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getTitle() {

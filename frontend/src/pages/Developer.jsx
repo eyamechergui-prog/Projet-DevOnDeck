@@ -1,6 +1,6 @@
 
-import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import styles from "./Developer.module.css";
 
 function Developer() {
@@ -16,11 +16,11 @@ function Developer() {
         </p>
 
         <p className={styles.info}>
-          Email : {user.email}
+          Email : {user?.email}
         </p>
 
         <p className={styles.info}>
-          Rôle : {user.role}
+          Rôle : {user?.role}
         </p>
 
         <div className={styles.navigation}>
@@ -36,7 +36,10 @@ function Developer() {
           </Link>
         </div>
 
-        <button className={styles.logoutButton} onClick={logout}>
+        <button
+          className={styles.logoutButton}
+          onClick={logout}
+        >
           Se déconnecter
         </button>
       </div>
@@ -45,3 +48,4 @@ function Developer() {
 }
 
 export default Developer;
+
