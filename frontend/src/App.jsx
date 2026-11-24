@@ -53,6 +53,8 @@ function AppRoutes() {
         <Route path="/organization/offres/ajouter" element={<AjouterOffre />} />
       </Route>
 
+      <Route path="/register" element={<Register />} />
+
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
